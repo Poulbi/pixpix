@@ -14,3 +14,6 @@ clean:
 
 install: all
 	install -Dm755 pixelate /usr/local/bin/pixelate
+
+uninstall:
+	rm -rf /usr/local/bin/pixelate
