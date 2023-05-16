@@ -1,3 +1,5 @@
+PREFIX = /usr/local
+
 LIBS = -lImlib2
 SRC = pixelate.c
 
@@ -10,7 +12,7 @@ clean:
 	rm -f config.h
 
 install: all
-	install -Dm755 pixelate /usr/local/bin/pixelate
+	install -Dm755 pixelate ${PREFIX}/bin/pixelate
 
 uninstall:
-	rm -rf /usr/local/bin/pixelate
+	rm -rf ${PREFIX}/bin/pixelate
