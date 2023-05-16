@@ -1,6 +1,6 @@
 ## Pixpix
 ### Usage
-`pixelate <image_path> [output_path]`
+`Usage: pixelate [-p size] <input> [output]`
 ### Installation
 ```bash
 git clone https://github.com/LordTlasT/pixpix
