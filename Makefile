@@ -3,14 +3,11 @@ SRC = pixelate.c
 
 all: pixelate
 
-config.h:
-	cp config.def.h $@
-
-pixelate: pixelate.c config.h
+pixelate: pixelate.c
 	cc ${SRC} -o $@ -s ${LIBS}
 
 clean:
-	rm config.h
+	rm -f config.h
 
 install: all
 	install -Dm755 pixelate /usr/local/bin/pixelate

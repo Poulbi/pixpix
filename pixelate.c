@@ -1,16 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include <Imlib2.h>
-#include "config.h"
+/* #include "config.h" */
+
+void usage()
+{
+	printf("Usage: pixelate [-p size] <input> [output]\n");
+}
 
 int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        printf("Usage: %s <image_path> [output_path]\n", argv[0]);
-        return 1;
-    }
 
-    const char* imagePath = argv[1];
-    const char* outputPath = (argc >= 3) ? argv[2] : "output.png";
+	static int pixelSize = 30;
+	char* imagePath = NULL;
+	char* outputPath = NULL;
+
+	int i;
+	for (i = 1; i < argc; i++)
+	{
+		if (!strcmp(argv[i], "-p")) {
+			i++;
+			if(i > argc) {
+				usage();
+				return 1;
+			}
+			pixelSize = atoi(argv[i]);
+			printf("pixelsize: %d\n",pixelSize);
+		} else if(access(argv[i], F_OK) == 0) {
+			imagePath = argv[i];
+			i++;
+			outputPath = (argc >= i + 1) ? argv[i] : "output.png";
+		} else {
+			printf("could not open file: %s", argv[i]);
+			return 1;
+		}
+	}
+	if (imagePath == NULL)
+	{
+		usage();
+		return 1;
+	}
+
+	printf("pixel size: %d", pixelSize);
 
     // Load the image using Imlib
     Imlib_Image image = imlib_load_image(imagePath);
