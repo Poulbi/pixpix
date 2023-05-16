@@ -16,3 +16,5 @@ install: all
 
 uninstall:
 	rm -rf ${PREFIX}/bin/pixelate
+
+.PHONY: all clean install uninstall
